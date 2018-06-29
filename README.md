@@ -1,8 +1,18 @@
 # JS Automator
 
-Automator helps to reduce typing. It is configured with scripts. You can use it **without** learning the programming language JavaScript. If you understand JavaScript you can use Automator for more use cases. There are two basic concepts in Automator: **expandables** and **shortcuts**. Both can trigger **actions**. An action may be the automated typing of a string, a sequence or the execution of an executable.   
+Automator helps to reduce typing. It is configured with scripts. 
+You can use it **without** learning the programming language JavaScript. 
+If you understand JavaScript you can use Automator for more use cases. 
+There are two basic concepts in Automator: **expandables** and **shortcuts**. 
+Both can trigger **actions**. An action may be the automated typing of a string, 
+a sequence or the execution of an executable.   
 
-**Expandables** are short words that are expanded to long words, sentences or paragraphs. **Shortcuts** are combinations of keys that trigger an action. Actions may be the execution of a program or a batch script or the typing of any text.
+**Expandables** are short words that are expanded to long words, sentences or paragraphs. 
+**Shortcuts** are combinations of keys that trigger an action. Actions may be the execution of a program or 
+a batch script or the typing of any text.
+
+See more on (Tumblr)[https://jsautomator.tumblr.com/]
+
 
 ## Concepts
 ### Expandables
@@ -74,8 +84,26 @@ expandables.add( "xadr", fileIO.loadString( "adr.txt" ), undefined, true );
 
 Here a longer text is loaded from file. We are using the copy-paste mechanism, because it is faster than typing it. The disadvantage is: you will see the text in the clipboard, and you may not like that, if it's a password.
 
+### Method expandables.clear();
+expandables.clear() clears all expandables. This should be called at the beginning of each main script. Otherwise, obsolete expandables will not be cleared at a reload.
 
-### Function automator.loadScript( filename );
+## Module shortcuts
+### Method shortcuts.addShortcutEval(shortcutstring, javascriptcode, bool_consume_event);
+
+```javascript
+shortcuts.addShortcutEval( "CAPSLOCK", "noCapslock();", true );
+
+```
+### Method shortcuts.clear();
+shortcuts.clear() clears all shortcuts. This should be called at the beginning of each main script. Otherwise, obsolete shortcuts will not be cleared at a reload.
+
+## Module connector
+### Method connector.clear();
+connector.clear() clears all connections. This should be called at the beginning of each main script. Otherwise, obsolete connections will not be cleared at a reload.
+
+
+## Module automator
+### Method automator.loadScript( filename ) - only pro-version
 This function loads a script. It enables includes (as in C++) or imports (as in Python) of other JavaScript modules.
 
 Example:
@@ -84,33 +112,29 @@ automator.loadScript( "http.js" );
 ```
 
 
-### Function expandables.clear();
-expandables.clear() clears all expandables. This should be called at the beginning of each main script. Otherwise, obsolete expandables will not be cleared at a reload.
-
-### Function shortcuts.addShortcutEval(shortcutstring, javascriptcode, bool_consume_event);
-
-```javascript
-shortcuts.addShortcutEval( "CAPSLOCK", "noCapslock();", true );
-
-```
-### Function shortcuts.clear();
-shortcuts.clear() clears all shortcuts. This should be called at the beginning of each main script. Otherwise, obsolete shortcuts will not be cleared at a reload.
-
-### Function connector.clear();
-connector.clear() clears all connections. This should be called at the beginning of each main script. Otherwise, obsolete connections will not be cleared at a reload.
-
-
-keyboard.show2GUI( 1 );
-keyboard.type( text || "undefined" );
-
-
-### Function fileIO.loadString(filename)
+## Module fileIO
+### Method fileIO.loadString(filename)
 fileIO.loadString(filename) loads a text file an returns a string. The filename 
 
 
-### Function process.set( key, value);
-### Function process.exec( command, parameter_string );
+## Module process
+### Method process.set( key, value);
+Set an environment variable.
 
+Example:
+```javascript
+process.set( "COUNTER", "COUNTER_" + counter );
+```
+
+
+### Method process.exec( command, parameter_string );
+Execute an external program.
+Example:
+```javascript
+// test.bat writes to test.log
+process.exec( "cmd.exe", "/C test.bat para1 para_2 " + counter );
+
+```
 
 ## Predefined JavaScript Functions
 
@@ -163,7 +187,6 @@ Automator defines a few global variables: the name of the current script, the cu
 
 Example:
 ```javascript
-log( "host    " + process.get( "COMPUTER" ) ); // Environment variable
 log( "module  " + currentscript );
 log( "dir     " + currentdir );
 log( "version " + currentversion );
