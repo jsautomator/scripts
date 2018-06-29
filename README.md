@@ -43,8 +43,6 @@ keyboard.typeSeq( "Ctrl+c" );
 
 ```
 
-## Use Cases
-
 # Reference: Objects & Methods
 ## Object expandables
 The object expandables handles the expansion of abbreviations. 
