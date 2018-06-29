@@ -11,7 +11,7 @@ a sequence or the execution of an executable.
 **Shortcuts** are combinations of keys that trigger an action. Actions may be the execution of a program or 
 a batch script or the typing of any text.
 
-See more on (Tumblr)[https://jsautomator.tumblr.com/]
+See more on [Tumblr](https://jsautomator.tumblr.com/)
 
 
 ## Concepts
